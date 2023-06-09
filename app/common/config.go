@@ -1,7 +1,6 @@
 package common
 
 import (
-	"fmt"
 	"os"
 	"path"
 	"runtime"
@@ -46,12 +45,10 @@ type Database struct {
 func InitConfig(env string) error {
 	configDirPath := getConfigDirPath()
 	configOptions := getConfigOptions(configDirPath, env)
-	fmt.Println(configOptions)
 	err := configOptions.loadConfigs(&cfg)
 	if err != nil {
 		return err
 	}
-	fmt.Println(cfg)
 	return nil
 }
 

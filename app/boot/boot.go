@@ -3,6 +3,7 @@ package boot
 import (
 	"context"
 	"interview/app/common"
+	"interview/app/router"
 )
 
 func initProviders() error {
@@ -10,7 +11,13 @@ func initProviders() error {
 }
 
 func initRoutes() error {
-	return nil
+	configs := common.GetConfig()
+	err := router.InitializeRouter(router.CoreConfigs{
+		Name: configs.Core.Name,
+		Host: configs.Core.Host,
+		Port: configs.Core.Port,
+	})
+	return err
 }
 
 func Init(ctx context.Context, env string) error {
