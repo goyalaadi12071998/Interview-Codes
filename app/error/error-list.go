@@ -2,6 +2,7 @@ package errorclass
 
 const (
 	BadRequestValidationError = "BAD_REQUEST_VALIDATION_ERROR"
+	BadRequestError           = "BAD_REQUEST_ERROR"
 	InternalServerError       = "INTERNAL_SERVER_ERROR"
 )
 
