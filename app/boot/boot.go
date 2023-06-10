@@ -4,10 +4,24 @@ import (
 	"context"
 	"interview/app/common"
 	"interview/app/controllers"
+	"interview/app/providers/db"
 	"interview/app/router"
 )
 
 func initProviders() error {
+	config := common.GetConfig().Database
+	err := db.InitDB(db.Config{
+		Name:     config.Name,
+		Host:     config.Host,
+		Port:     config.Port,
+		Username: config.Username,
+		Password: config.Password,
+	})
+
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 

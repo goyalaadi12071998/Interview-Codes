@@ -128,6 +128,5 @@ func registerRouteGroup(routeGroup RouteGroup, router *mux.Router) {
 
 func getAddressForServer(configs CoreConfigs) string {
 	addr := ":" + strconv.Itoa(configs.Port)
-	fmt.Println(addr)
 	return addr
 }
