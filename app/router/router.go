@@ -82,7 +82,7 @@ func initializeRouter(router *mux.Router, configs CoreConfigs) error {
 	router.NotFoundHandler = router.NewRoute().HandlerFunc(controllers.AppController.NotFoundHandler).GetHandler()
 
 	s := &http.Server{
-		Addr:    ":3000",
+		Addr:    getAddressForServer(configs),
 		Handler: router,
 	}
 

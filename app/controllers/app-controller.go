@@ -29,6 +29,10 @@ type Error struct {
 	Message string
 }
 
+func NewAppController() {
+	AppController = appcontroller{}
+}
+
 func (a appcontroller) Health(w http.ResponseWriter, r *http.Request) {
 	if isHealthy {
 		response := map[string]string{

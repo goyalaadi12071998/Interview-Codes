@@ -3,6 +3,7 @@ package boot
 import (
 	"context"
 	"interview/app/common"
+	"interview/app/controllers"
 	"interview/app/router"
 )
 
@@ -20,6 +21,11 @@ func initRoutes() error {
 	return err
 }
 
+func initControllers() error {
+	controllers.NewAppController()
+	return nil
+}
+
 func Init(ctx context.Context, env string) error {
 	err := common.InitConfig(env)
 	if err != nil {
@@ -27,6 +33,11 @@ func Init(ctx context.Context, env string) error {
 	}
 
 	err = initProviders()
+	if err != nil {
+		return err
+	}
+
+	err = initControllers()
 	if err != nil {
 		return err
 	}
