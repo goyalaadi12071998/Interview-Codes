@@ -3,6 +3,7 @@ package boot
 import (
 	"context"
 	"interview/app/common"
+	"interview/app/contacts"
 	"interview/app/controllers"
 	"interview/app/providers/db"
 	"interview/app/router"
@@ -41,7 +42,14 @@ func initRoutes() error {
 }
 
 func initControllers() error {
+	dbclient := db.GetDb()
+	repo := db.NewRepo(dbclient)
+	contactsCore := contacts.NewCore(repo)
+	contactsService := contacts.NewService(contactsCore)
+
 	controllers.NewAppController()
+	controllers.NewContactsController(contactsService)
+
 	return nil
 }
 

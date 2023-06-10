@@ -46,6 +46,7 @@ func getRouteGroup() [2]RouteGroup {
 				{path: "/", method: "GET", handler: controllers.AppController.Get},
 				{path: "/health", method: "GET", handler: controllers.AppController.Health},
 				{path: "/health", method: "POST", handler: controllers.AppController.Health},
+				{path: "/identify", method: "POST", handler: controllers.ContactController.Contact},
 			},
 		},
 		{
