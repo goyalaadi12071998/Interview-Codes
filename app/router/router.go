@@ -79,6 +79,8 @@ func initializeRouter(router *mux.Router, configs CoreConfigs) error {
 
 	registerRoutes(router)
 
+	fmt.Println("Routes initialized Successfully")
+
 	router.NotFoundHandler = router.NewRoute().HandlerFunc(controllers.AppController.NotFoundHandler).GetHandler()
 
 	s := &http.Server{
@@ -92,6 +94,8 @@ func initializeRouter(router *mux.Router, configs CoreConfigs) error {
 		}
 		fmt.Println("Sever started on port: ", configs.Port)
 	}()
+
+	fmt.Println("Server started on port: ", configs.Port)
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT, syscall.SIGTSTP)

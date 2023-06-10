@@ -8,7 +8,7 @@ import (
 	"interview/app/router"
 )
 
-func initProviders() error {
+func initMySqlClient() error {
 	config := common.GetConfig().Database
 	err := db.InitDB(db.Config{
 		Name:     config.Name,
@@ -18,6 +18,11 @@ func initProviders() error {
 		Password: config.Password,
 	})
 
+	return err
+}
+
+func initProviders() error {
+	err := initMySqlClient()
 	if err != nil {
 		return err
 	}

@@ -14,13 +14,13 @@ type appcontroller struct {
 }
 
 type SuccessResponse struct {
-	Success bool
-	Data    interface{}
+	Success bool        `json:"success"`
+	Data    interface{} `json:"data"`
 }
 
 type ErrorResponse struct {
-	Success bool
-	Error   Error
+	Success bool  `json:"success"`
+	Error   Error `json:"error"`
 }
 
 type Error struct {
