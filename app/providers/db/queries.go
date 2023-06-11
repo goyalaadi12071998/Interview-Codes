@@ -37,6 +37,15 @@ func (d Repo) Get(model any, filter map[string]interface{}) error {
 	return nil
 }
 
+func (d Repo) FindOne(model any, filter map[string]interface{}) error {
+	err := d.db.Where(filter).First(model).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (d Repo) Update(model any) error {
 	err := d.db.Save(model).Error
 	if err != nil {

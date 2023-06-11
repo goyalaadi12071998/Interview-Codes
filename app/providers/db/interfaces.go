@@ -5,5 +5,7 @@ type IRepo interface {
 
 	Get(model any, filter map[string]interface{}) error
 
+	FindOne(model any, filter map[string]interface{}) error
+
 	Update(model any) error
 }
