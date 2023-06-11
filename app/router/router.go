@@ -106,9 +106,7 @@ func initializeRouter(router *mux.Router, configs CoreConfigs) error {
 	defer cancel()
 
 	if err := s.Shutdown(ctx); err != nil {
-		if err != nil {
-			fmt.Println("Server shutdown with error")
-		}
+		fmt.Println("Server shutdown with error")
 	}
 
 	fmt.Println("Server Shut Down Successfully")

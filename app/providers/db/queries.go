@@ -22,10 +22,10 @@ func NewRepo(db *gorm.DB) IRepo {
 func (d Repo) Create(model any) error {
 	err := d.db.Create(model).Error
 	if err != nil {
-		return nil
+		return err
 	}
 
-	return err
+	return nil
 }
 
 func (d Repo) Get(model any, filter map[string]interface{}) error {
@@ -34,7 +34,7 @@ func (d Repo) Get(model any, filter map[string]interface{}) error {
 		return err
 	}
 
-	return err
+	return nil
 }
 
 func (d Repo) Update(model any) error {

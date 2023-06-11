@@ -6,7 +6,6 @@ import (
 	errorclass "interview/app/error"
 	"interview/app/models"
 	"interview/app/structs"
-	"time"
 )
 
 var Service service
@@ -50,7 +49,7 @@ func (s service) CreateContact(ctx context.Context, data *structs.RequestIdentif
 		}
 	}
 
-	if contactEmail != nil && contactPhoneNumber != nil && contactEmail.ID == contactPhoneNumber.ID {
+	if contactEmail != nil && contactPhoneNumber != nil && contactEmail.Id == contactPhoneNumber.Id {
 
 		if contactEmail.LinkPreference == constants.LinkPreferencePrimary {
 			primaryContactId = contactEmail.Id
@@ -73,8 +72,6 @@ func (s service) CreateContact(ctx context.Context, data *structs.RequestIdentif
 	newContact := models.Contact{
 		PhoneNumber: data.PhoneNumber,
 		Email:       data.Email,
-		CreatedAt:   int(time.Now().Unix()),
-		UpdatedAt:   int(time.Now().Unix()),
 	}
 
 	if contactEmail == nil && contactPhoneNumber == nil {
@@ -85,13 +82,19 @@ func (s service) CreateContact(ctx context.Context, data *structs.RequestIdentif
 	} else if contactEmail == nil && contactPhoneNumber != nil {
 		newContact.LinkPreference = constants.LinkPreferenceSecondary
 		newContact.LinkedId = contactPhoneNumber.Id
-	} else {
-		if contactEmail.CreatedAt >= contactPhoneNumber.CreatedAt {
-
-		} else {
-
-		}
 	}
 
-	return nil, nil
+	res, err := s.core.CreateContact(ctx, &newContact)
+	if err != nil {
+		return nil, errorclass.NewError(errorclass.InternalServerError).Wrap("error in saving data in db")
+	}
+
+	return &structs.ResponseIdentify{
+		Contact: structs.Contact{
+			PrimaryContatctId:   res.Id,
+			Emails:              []string{res.Email},
+			PhoneNumbers:        []string{res.PhoneNumber},
+			SecondaryContactIds: []int{},
+		},
+	}, nil
 }

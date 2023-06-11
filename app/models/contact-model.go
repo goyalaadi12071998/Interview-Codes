@@ -1,15 +1,12 @@
 package models
 
-import "gorm.io/gorm"
-
 type Contact struct {
-	gorm.Model
-	Id             int
+	Id             int `gorm:"primary_key;auto_increment"`
 	PhoneNumber    string
 	Email          string
 	LinkedId       int
 	LinkPreference string
-	CreatedAt      int
-	UpdatedAt      int
+	CreatedAt      int `gorm:"autoCreateTime:milli"`
+	UpdatedAt      int `gorm:"autoUpdateTime:milli"`
 	DeletedAt      int
 }

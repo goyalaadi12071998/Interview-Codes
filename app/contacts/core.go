@@ -33,3 +33,14 @@ func (c core) GetContact(ctx context.Context, filter map[string]interface{}) (*m
 
 	return contact[0], nil
 }
+
+func (c core) CreateContact(ctx context.Context, data *models.Contact) (*models.Contact, error) {
+	var contact *models.Contact
+	contact = data
+
+	err := c.repo.Create(contact)
+	if err != nil {
+		return nil, err
+	}
+	return contact, nil
+}
