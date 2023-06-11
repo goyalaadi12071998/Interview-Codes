@@ -17,10 +17,10 @@ type IError interface {
 }
 
 func (e *Error) StatusCode() int {
-	if strings.Contains(e.code, "BAD_REQUEST") {
-		return 400
+	if strings.Contains(e.code, "INTERNAL_SERVER") {
+		return 500
 	}
-	return 500
+	return 400
 }
 
 func (e *Error) Name() string {

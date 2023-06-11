@@ -1,6 +1,8 @@
 package db
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 var repo Repo
 
@@ -26,11 +28,12 @@ func (d Repo) Create(model any) error {
 	return err
 }
 
-func (d Repo) Get(model any, id int) error {
-	err := d.db.Where("id = ?", id).First(model).Error
+func (d Repo) Get(model any, filter map[string]interface{}) error {
+	err := d.db.Where(filter).Find(&model).Error
 	if err != nil {
 		return err
 	}
+
 	return err
 }
 

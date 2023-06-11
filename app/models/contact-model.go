@@ -4,12 +4,12 @@ import "gorm.io/gorm"
 
 type Contact struct {
 	gorm.Model
-	ID             int
+	Id             int
 	PhoneNumber    string
-	email          string
-	linkedId       int
-	linkPrecedence string
-	createdAt      int
-	updatedAt      int
-	deletedAt      int
+	Email          string
+	LinkedId       int
+	LinkPreference string
+	CreatedAt      int
+	UpdatedAt      int
+	DeletedAt      int
 }
