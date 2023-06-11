@@ -28,17 +28,17 @@ func (d Repo) Create(model any) error {
 	return nil
 }
 
-func (d Repo) Get(model any, filter map[string]interface{}) error {
+func (d Repo) Get(model any, filter map[string]interface{}) (any, error) {
 	err := d.db.Where(filter).Find(&model).Error
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return model, nil
 }
 
 func (d Repo) FindOne(model any, filter map[string]interface{}) error {
-	err := d.db.Where(filter).First(model).Error
+	err := d.db.Where(filter).First(&model).Error
 	if err != nil {
 		return err
 	}
@@ -46,8 +46,8 @@ func (d Repo) FindOne(model any, filter map[string]interface{}) error {
 	return nil
 }
 
-func (d Repo) Update(model any) error {
-	err := d.db.Save(model).Error
+func (d Repo) Update(model any, filter map[string]interface{}, id int) error {
+	err := d.db.Model(&model).Where("id = ?", id).Updates(filter).Error
 	if err != nil {
 		return err
 	}

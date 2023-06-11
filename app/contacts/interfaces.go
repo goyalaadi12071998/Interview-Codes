@@ -8,10 +8,11 @@ import (
 )
 
 type ICore interface {
-	GetContact(ctx context.Context, filter map[string]interface{}) (*models.Contact, error)
+	GetContact(ctx context.Context, filter map[string]interface{}) ([]models.Contact, error)
 	CreateContact(ctx context.Context, data *models.Contact) (*models.Contact, error)
+	UpdateContact(ctx context.Context, data *models.Contact, filter map[string]interface{}) (*models.Contact, error)
 }
 
 type IService interface {
-	CreateContact(ctx context.Context, data *structs.RequestIdentify) (*structs.ResponseIdentify, *errorclass.Error)
+	CreateContacts(ctx context.Context, data *structs.RequestIdentify) (*structs.ResponseIdentify, *errorclass.Error)
 }

@@ -20,18 +20,16 @@ func NewCore(repo db.IRepo) ICore {
 	return Core
 }
 
-func (c core) GetContact(ctx context.Context, filter map[string]interface{}) (*models.Contact, error) {
-	var contact []*models.Contact
-	err := c.repo.Get(contact, filter)
+func (c core) GetContact(ctx context.Context, filter map[string]interface{}) ([]models.Contact, error) {
+	var contacts []models.Contact
+
+	data, err := c.repo.Get(contacts, filter)
 	if err != nil {
 		return nil, err
 	}
 
-	if len(contact) == 0 {
-		return nil, nil
-	}
-
-	return contact[0], nil
+	contacts = data.([]models.Contact)
+	return contacts, nil
 }
 
 func (c core) CreateContact(ctx context.Context, data *models.Contact) (*models.Contact, error) {
@@ -42,5 +40,17 @@ func (c core) CreateContact(ctx context.Context, data *models.Contact) (*models.
 	if err != nil {
 		return nil, err
 	}
+	return contact, nil
+}
+
+func (c core) UpdateContact(ctx context.Context, data *models.Contact, filter map[string]interface{}) (*models.Contact, error) {
+	var contact *models.Contact
+	contact = data
+
+	err := c.repo.Update(contact, filter, contact.Id)
+	if err != nil {
+		return nil, err
+	}
+
 	return contact, nil
 }

@@ -35,7 +35,7 @@ func (c contactcontroller) Identify(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	payload, errr := c.service.CreateContact(r.Context(), identifyData)
+	payload, errr := c.service.CreateContacts(r.Context(), identifyData)
 	if errr != nil {
 		Respond(w, r, nil, errr)
 		return
