@@ -5,8 +5,9 @@
 # HOW TO RUN PROJECT
 0. Clone this repo in your local
 1. Install Mysql
-2. Create DATABASE bitespeed
-3. Create a TABLE name contacts
+2. If you are running the application using docker, then please change the username and password in configs/docker.toml file accoding to your   local mysql username and password.
+3. Create DATABASE bitespeed
+4. Create a TABLE name contacts
 
    ```
    CREATE TABLE contacts ( id bigint NOT NULL PRIMARY KEY AUTO_INCREMENT, phone_number varchar(255), email varchar(255), linked_id int, link_preference varchar(255), created_at bigint, updated_at bigint, deleted_at bigint )
