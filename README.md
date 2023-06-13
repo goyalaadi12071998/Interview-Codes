@@ -1,8 +1,8 @@
-# HOW TO RUN PROJECT
-
-#Prerequisite
+# Prerequisite
 1. Docker
 2. MySql
+
+# HOW TO RUN PROJECT
 
 1. Install Mysql
 2. Create DATABASE bitespeed
