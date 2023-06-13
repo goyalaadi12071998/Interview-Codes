@@ -9,9 +9,10 @@ var availableEnvs map[string]bool
 
 func init() {
 	availableEnvs = map[string]bool{
-		"dev":   true,
-		"stage": true,
-		"prod":  false,
+		"dev":    true,
+		"stage":  true,
+		"prod":   false,
+		"docker": true,
 	}
 }
 
@@ -21,7 +22,7 @@ func GetEnv() (*string, error) {
 		env = "dev"
 	}
 
-	if _, ok := availableEnvs[env]; !ok {
+	if value, ok := availableEnvs[env]; !ok || value == false {
 		return nil, errors.New("env does not exist or not activated")
 	}
 

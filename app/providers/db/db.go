@@ -35,7 +35,7 @@ func connectDB(config Config) (*gorm.DB, error) {
 	dbConnectionUrl := getDbConnectionUrl(config)
 	db, err := gorm.Open(mysql.Open(dbConnectionUrl), &gorm.Config{})
 	if err != nil {
-		fmt.Println("error in connecting db")
+		fmt.Println(err.Error())
 		return nil, err
 	}
 
