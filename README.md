@@ -3,7 +3,7 @@
 2. MySql
 
 # HOW TO RUN PROJECT
-
+0. Clone this repo in your local
 1. Install Mysql
 2. Create DATABASE bitespeed
 3. Create a TABLE name contacts
@@ -18,7 +18,7 @@
 
 # Note:
 
-At lot of places the code is like
+1. At lot of places the code is like
 
 ```
     if err != nil {
