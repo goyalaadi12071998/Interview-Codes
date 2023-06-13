@@ -56,4 +56,4 @@ And some hit a req -
 }
 ```
 
-Not both the different contacts are already secondary
+Now both the different contacts are already secondary
